@@ -1,5 +1,6 @@
 package br.com.nagata.dev.controller;
 
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class ClienteController {
   }
 
   @PostMapping
-  public ResponseEntity<?> saveCustomer(@RequestBody ClienteDTO cliente) {
+  public ResponseEntity<?> saveCustomer(@Valid @RequestBody ClienteDTO cliente) {
     return ResponseEntity.created(null).body(service.saveCustomer(cliente));
   }
 }

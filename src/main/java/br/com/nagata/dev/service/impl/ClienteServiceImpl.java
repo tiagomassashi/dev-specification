@@ -25,8 +25,19 @@ public class ClienteServiceImpl implements ClienteService {
 
     ClienteEntity newCliente = repository.save(new ClienteEntity(cliente));
 
-    log.info("save customer processed successfully!");
+    log.info("save customer successfully processed!");
     return new ClienteDTO(newCliente);
   }
 
+  @Override
+  public ClienteDTO getCustomerById(Long id) {
+    log.info("processing get customer by id...");
+
+    ClienteEntity cliente = repository.findById(id).orElseThrow(() -> {
+      throw new RuntimeException("customer not found");
+    });
+
+    log.info("get customer by id successfully processed!");
+    return new ClienteDTO(cliente);
+  }
 }

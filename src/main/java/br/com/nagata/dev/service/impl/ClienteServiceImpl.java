@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import br.com.nagata.dev.enums.TipoClienteEnum;
+import br.com.nagata.dev.exception.BusinessException;
 import br.com.nagata.dev.model.ClienteEntity;
 import br.com.nagata.dev.model.DocumentoEntity;
 import br.com.nagata.dev.model.dto.ClienteDTO;
@@ -50,12 +52,11 @@ public class ClienteServiceImpl implements ClienteService {
   }
 
   @Override
-  public ClienteEntity getCustomerById(Long id) {
+  public ClienteEntity getCustomerById(Long id) throws BusinessException {
     log.info("processing get customer by id...");
 
-    ClienteEntity cliente = repository.findById(id).orElseThrow(() -> {
-      throw new RuntimeException("customer not found");
-    });
+    ClienteEntity cliente = repository.findById(id)
+        .orElseThrow(() -> new BusinessException(HttpStatus.NOT_FOUND, "customer not found"));
 
     log.info("get customer by id successfully processed!");
     return cliente;
@@ -63,12 +64,11 @@ public class ClienteServiceImpl implements ClienteService {
 
   @Override
   @Transactional(rollbackOn = Exception.class)
-  public void deleteCustomerById(Long id) {
+  public void deleteCustomerById(Long id) throws BusinessException {
     log.info("processing delete customer by id...");
 
-    ClienteEntity cliente = repository.findById(id).orElseThrow(() -> {
-      throw new RuntimeException("customer not found");
-    });
+    ClienteEntity cliente = repository.findById(id)
+        .orElseThrow(() -> new BusinessException(HttpStatus.NOT_FOUND, "customer not found"));
 
     repository.delete(cliente);
 

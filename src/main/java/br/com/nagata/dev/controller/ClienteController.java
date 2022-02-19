@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.nagata.dev.enums.TipoClienteEnum;
+import br.com.nagata.dev.exception.BusinessException;
 import br.com.nagata.dev.helper.PaginacaoHelper;
 import br.com.nagata.dev.model.ClienteEntity;
 import br.com.nagata.dev.model.dto.ClienteDTO;
@@ -42,12 +43,12 @@ public class ClienteController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<?> getCustomerById(@PathVariable Long id) {
+  public ResponseEntity<?> getCustomerById(@PathVariable Long id) throws BusinessException {
     return ResponseEntity.ok(new ClienteDTO(service.getCustomerById(id)));
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<?> deleteCustomerById(@PathVariable Long id) {
+  public ResponseEntity<?> deleteCustomerById(@PathVariable Long id) throws BusinessException {
     service.deleteCustomerById(id);
     return ResponseEntity.ok().build();
   }

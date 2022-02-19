@@ -1,6 +1,5 @@
 package br.com.nagata.dev.service.impl;
 
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.nagata.dev.model.DocumentoEntity;
@@ -20,7 +19,6 @@ public class DocumentoServiceImpl implements DocumentoService {
   }
 
   @Override
-  @Transactional(rollbackOn = Exception.class)
   public DocumentoEntity saveDocument(DocumentoEntity documento) {
     log.info("processing save document...");
 

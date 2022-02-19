@@ -1,11 +1,21 @@
 package br.com.nagata.dev.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import br.com.nagata.dev.enums.TipoClienteEnum;
 import br.com.nagata.dev.model.ClienteEntity;
+import br.com.nagata.dev.model.DocumentoEntity;
 import br.com.nagata.dev.model.dto.ClienteDTO;
 import br.com.nagata.dev.repository.ClienteRepository;
+import br.com.nagata.dev.repository.specification.ClienteSpecification;
 import br.com.nagata.dev.service.ClienteService;
+import br.com.nagata.dev.service.DocumentoService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -13,24 +23,34 @@ import lombok.extern.slf4j.Slf4j;
 public class ClienteServiceImpl implements ClienteService {
 
   private ClienteRepository repository;
+  private DocumentoService documentoService;
 
   @Autowired
-  public ClienteServiceImpl(ClienteRepository repository) {
+  public ClienteServiceImpl(ClienteRepository repository, DocumentoService documentoService) {
     this.repository = repository;
+    this.documentoService = documentoService;
   }
 
   @Override
-  public ClienteDTO saveCustomer(ClienteDTO cliente) {
+  @Transactional(rollbackOn = Exception.class)
+  public ClienteEntity saveCustomer(ClienteDTO cliente) {
     log.info("processing save customer...");
 
     ClienteEntity newCliente = repository.save(new ClienteEntity(cliente));
 
+    List<DocumentoEntity> documentos = new ArrayList<>();
+
+    cliente.getDocumentos().stream().forEach(
+        dto -> documentos.add(documentoService.saveDocument(new DocumentoEntity(dto, newCliente))));
+
+    newCliente.setDocumentosCliente(documentos);
+
     log.info("save customer successfully processed!");
-    return new ClienteDTO(newCliente);
+    return newCliente;
   }
 
   @Override
-  public ClienteDTO getCustomerById(Long id) {
+  public ClienteEntity getCustomerById(Long id) {
     log.info("processing get customer by id...");
 
     ClienteEntity cliente = repository.findById(id).orElseThrow(() -> {
@@ -38,6 +58,33 @@ public class ClienteServiceImpl implements ClienteService {
     });
 
     log.info("get customer by id successfully processed!");
-    return new ClienteDTO(cliente);
+    return cliente;
+  }
+
+  @Override
+  @Transactional(rollbackOn = Exception.class)
+  public void deleteCustomerById(Long id) {
+    log.info("processing delete customer by id...");
+
+    ClienteEntity cliente = repository.findById(id).orElseThrow(() -> {
+      throw new RuntimeException("customer not found");
+    });
+
+    repository.delete(cliente);
+
+    log.info("delete customer by id successfully processed!");
+  }
+
+  @Override
+  public Page<ClienteEntity> getCustomers(String nome, TipoClienteEnum tipo, Pageable pageable) {
+    log.info("processing get customers...");
+
+    Page<ClienteEntity> clientes = repository.findAll(
+        Specification
+            .where(ClienteSpecification.likeNome(nome).and(ClienteSpecification.equalTipo(tipo))),
+        pageable);
+
+    log.info("get customers successfully processed!");
+    return clientes;
   }
 }

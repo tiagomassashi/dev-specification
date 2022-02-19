@@ -6,5 +6,4 @@ import br.com.nagata.dev.model.ClienteEntity;
 
 public interface ClienteRepository
     extends CrudRepository<ClienteEntity, Long>, JpaSpecificationExecutor<ClienteEntity> {
-
 }

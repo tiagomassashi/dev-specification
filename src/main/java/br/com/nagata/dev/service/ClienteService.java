@@ -1,10 +1,18 @@
 package br.com.nagata.dev.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import br.com.nagata.dev.enums.TipoClienteEnum;
+import br.com.nagata.dev.model.ClienteEntity;
 import br.com.nagata.dev.model.dto.ClienteDTO;
 
 public interface ClienteService {
 
-  ClienteDTO saveCustomer(ClienteDTO cliente);
-  
-  ClienteDTO getCustomerById(Long id);
+  ClienteEntity saveCustomer(ClienteDTO cliente);
+
+  ClienteEntity getCustomerById(Long id);
+
+  void deleteCustomerById(Long id);
+
+  Page<ClienteEntity> getCustomers(String nome, TipoClienteEnum tipo, Pageable pageable);
 }

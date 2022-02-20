@@ -1,6 +1,11 @@
 # dev-specification
 Desenvolvimento de um projeto para estudo de Spring Data JPA - Specifications, utilizando Java11 e H2.
 
+```bash
+# Clone este repositório
+$ git clone https://github.com/tiagomassashi/dev-specification.git
+```
+
 ## 🔧 Funções
 ### Incluir cliente:
 - URL: http://localhost:8080/dev-specification/api/v1/customer

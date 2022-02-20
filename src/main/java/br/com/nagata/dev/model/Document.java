@@ -8,8 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import br.com.nagata.dev.model.dto.DocumentoDTO;
-import br.com.nagata.dev.model.pk.DocumentoPK;
+import br.com.nagata.dev.model.dto.DocumentDTO;
+import br.com.nagata.dev.model.pk.DocumentPK;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,25 +21,25 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "TB_DOCT_CLIE", schema = "PUBLIC")
-public class DocumentoEntity implements Serializable {
+public class Document implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
   @EmbeddedId
-  private DocumentoPK id;
+  private DocumentPK id;
 
-  @Column(name = "NR_DOCT_CLIE", length = 20, nullable = false)
-  private String numeroDocumentoCliente;
+  @Column(name = "NR_DOCT", length = 20, nullable = false)
+  private String documentNumber;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "CD_CLIE", insertable = false, updatable = false)
-  private ClienteEntity cliente;
+  private Customer customer;
 
-  public DocumentoEntity(DocumentoDTO dto, ClienteEntity cliente) {
-    this.id = new DocumentoPK();
-    this.id.setTipoDocumento(dto.getTipo());
-    this.id.setCodigoCliente(cliente.getCodigoCliente());
-    this.numeroDocumentoCliente = dto.getNumero();
-    this.cliente = cliente;
+  public Document(DocumentDTO dto, Customer customer) {
+    this.id = new DocumentPK();
+    this.id.setDocumentType(dto.getType());
+    this.id.setCustomerCode(customer.getCustomerCode());
+    this.documentNumber = dto.getNumber();
+    this.customer = customer;
   }
 }

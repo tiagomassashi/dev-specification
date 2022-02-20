@@ -22,7 +22,7 @@ public class HandlerExceptionConfig {
     log.trace("handlerBusinessException WebRequest: {}", request);
     log.error("handlerBusinessException StackTrace: {}", ex.getMessage());
 
-    return montarMensagem(ex.getCode(), ex);
+    return formatMessage(ex.getCode(), ex);
   }
 
   @ExceptionHandler(Exception.class)
@@ -31,10 +31,10 @@ public class HandlerExceptionConfig {
     log.trace("handlerBusinessException WebRequest: {}", request);
     log.error("handlerBusinessException StackTrace: {}", ex.getMessage());
 
-    return montarMensagem(HttpStatus.INTERNAL_SERVER_ERROR, ex);
+    return formatMessage(HttpStatus.INTERNAL_SERVER_ERROR, ex);
   }
 
-  private ResponseEntity<?> montarMensagem(HttpStatus code, Exception ex) {
+  private ResponseEntity<?> formatMessage(HttpStatus code, Exception ex) {
     ObjectNode json = new ObjectNode(JsonNodeFactory.instance);
     json.put("timestamp", LocalDateTime.now().toString());
     json.put("status", code.value());

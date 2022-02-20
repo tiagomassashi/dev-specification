@@ -2,8 +2,8 @@ package br.com.nagata.dev.repository;
 
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
-import br.com.nagata.dev.model.ClienteEntity;
+import br.com.nagata.dev.model.Customer;
 
-public interface ClienteRepository
-    extends CrudRepository<ClienteEntity, Long>, JpaSpecificationExecutor<ClienteEntity> {
+public interface CustomerRepository
+    extends CrudRepository<Customer, Long>, JpaSpecificationExecutor<Customer> {
 }

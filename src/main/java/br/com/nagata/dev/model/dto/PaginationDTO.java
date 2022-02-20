@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaginacaoDTO implements Serializable {
+public class PaginationDTO implements Serializable {
 
   private static final long serialVersionUID = 1L;
 

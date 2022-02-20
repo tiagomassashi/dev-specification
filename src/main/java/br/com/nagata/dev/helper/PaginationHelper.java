@@ -4,18 +4,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-import br.com.nagata.dev.model.dto.PaginaDTO;
+import br.com.nagata.dev.model.dto.PageDTO;
 
 @Component
-public class PaginacaoHelper {
+public class PaginationHelper {
 
   private static final int PAGE_OFFSET = 1;
   private static final int MIN_PAGE_NUMBER = 1;
   private static final int MAX_PAGE_SIZE = 20;
   private static final int MIN_PAGE_SIZE = 1;
 
-  public <T> PaginaDTO<T> converter(Page<T> page) {
-    PaginaDTO<T> dto = new PaginaDTO<>();
+  public <T> PageDTO<T> convert(Page<T> page) {
+    PageDTO<T> dto = new PageDTO<>();
     dto.setPageNumber(page.getPageable().getPageNumber() + 1);
     dto.setPageSize(page.getPageable().getPageSize());
     dto.setTotalPages(page.getTotalPages());
@@ -26,7 +26,7 @@ public class PaginacaoHelper {
     return dto;
   }
 
-  public Pageable converter(int page, int size) {
+  public Pageable convert(int page, int size) {
     int pageNumber = page < MIN_PAGE_NUMBER ? (MIN_PAGE_NUMBER - PAGE_OFFSET) : (page - PAGE_OFFSET);
     int pageSize = size > MAX_PAGE_SIZE ? MAX_PAGE_SIZE : size;
     pageSize = pageSize < MIN_PAGE_SIZE ? MAX_PAGE_SIZE : pageSize;

@@ -14,8 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import br.com.nagata.dev.enums.TipoClienteEnum;
-import br.com.nagata.dev.model.dto.ClienteDTO;
+import br.com.nagata.dev.enums.CustomerType;
+import br.com.nagata.dev.model.dto.CustomerDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,32 +27,32 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "TB_CLIE", schema = "PUBLIC")
-public class ClienteEntity implements Serializable {
+public class Customer implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
   @Id
-  @SequenceGenerator(name = "sequenceCliente", sequenceName = "PUBLIC.SQ_CLIE", allocationSize = 1)
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceCliente")
+  @SequenceGenerator(name = "customerSequence", sequenceName = "PUBLIC.SQ_CLIE", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.AUTO, generator = "customerSequence")
   @Column(name = "CD_CLIE", length = 9, nullable = false)
-  private Long codigoCliente;
+  private Long customerCode;
 
   @Column(name = "NM_CLIE", length = 80, nullable = false)
-  private String nomeCliente;
+  private String customerName;
 
   @Enumerated(EnumType.STRING)
   @Column(name = "TP_CLIE", length = 10, nullable = false)
-  private TipoClienteEnum tipoCliente;
+  private CustomerType customerType;
 
   @Column(name = "DH_INCL", nullable = false)
-  private LocalDateTime dataHoraInclusao;
+  private LocalDateTime registrationDateTime;
 
-  @OneToMany(mappedBy = "id.codigoCliente", fetch = FetchType.EAGER)
-  private List<DocumentoEntity> documentosCliente;
+  @OneToMany(mappedBy = "id.customerCode", fetch = FetchType.EAGER)
+  private List<Document> customerDocuments;
 
-  public ClienteEntity(ClienteDTO dto) {
-    this.nomeCliente = dto.getNome();
-    this.tipoCliente = dto.getTipo();
-    this.dataHoraInclusao = LocalDateTime.now();
+  public Customer(CustomerDTO dto) {
+    this.customerName = dto.getName();
+    this.customerType = dto.getType();
+    this.registrationDateTime = LocalDateTime.now();
   }
 }

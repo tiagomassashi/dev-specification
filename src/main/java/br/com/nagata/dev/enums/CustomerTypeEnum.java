@@ -3,6 +3,6 @@ package br.com.nagata.dev.enums;
 import lombok.Getter;
 
 @Getter
-public enum CustomerType {
+public enum CustomerTypeEnum {
   NORMAL, ESPECIAL;
 }

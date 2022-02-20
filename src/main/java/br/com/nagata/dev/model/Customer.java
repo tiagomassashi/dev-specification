@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import br.com.nagata.dev.enums.CustomerType;
+import br.com.nagata.dev.enums.CustomerTypeEnum;
 import br.com.nagata.dev.model.dto.CustomerDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,7 +40,7 @@ public class Customer {
 
   @Enumerated(EnumType.STRING)
   @Column(name = "TP_CLIE", length = 10, nullable = false)
-  private CustomerType customerType;
+  private CustomerTypeEnum customerType;
 
   @Column(name = "DH_INCL", nullable = false)
   private LocalDateTime registrationDateTime;

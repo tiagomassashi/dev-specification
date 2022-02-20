@@ -80,8 +80,12 @@ public class CustomerServiceImpl implements CustomerService {
     log.info("processing get customers...");
 
     Page<Customer> customers =
-        repository.findAll(Specification.where(CustomerSpecification.likeName(filter.getName())
-            .and(CustomerSpecification.equalType(filter.getType()))), pageable);
+        repository
+            .findAll(
+                Specification.where(CustomerSpecification.likeName(filter.getCustomerName())
+                    .and(CustomerSpecification.equalCustomerType(filter.getCustomerType()))
+                    .and(CustomerSpecification.equalDocument(filter.getDocumentType(), filter.getDocumentNumber()))),
+                pageable);
 
     log.info("get customers successfully processed!");
     return customers;

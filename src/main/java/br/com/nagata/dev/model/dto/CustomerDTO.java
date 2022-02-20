@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import br.com.nagata.dev.enums.CustomerType;
+import br.com.nagata.dev.enums.CustomerTypeEnum;
 import br.com.nagata.dev.model.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +20,7 @@ public class CustomerDTO {
 
   private Long code;
   @NotNull @NotBlank private String name;
-  @NotNull private CustomerType type;
+  @NotNull private CustomerTypeEnum type;
   private LocalDateTime registered;
   private List<DocumentDTO> documents;
 

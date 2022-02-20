@@ -8,6 +8,12 @@ spring:
     console:
       enabled: true
       path: /h2-console
+
+springdoc:
+  packagesToScan: br.com.nagata.dev.controller
+  pathsToMatch: /api/v1/customer/**
+  api-docs:
+    path: /customer-docs
       
 # Dados exibidos no endpoint "info" do Actuator
 info:

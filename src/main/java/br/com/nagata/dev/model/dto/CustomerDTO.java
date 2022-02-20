@@ -1,6 +1,5 @@
 package br.com.nagata.dev.model.dto;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,9 +16,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerDTO implements Serializable {
-
-  private static final long serialVersionUID = 1L;
+public class CustomerDTO {
 
   private Long code;
   @NotNull @NotBlank private String name;

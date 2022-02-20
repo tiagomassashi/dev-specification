@@ -9,12 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class DocumentoServiceImpl implements DocumentService {
+public class DocumentServiceImpl implements DocumentService {
 
   private DocumentRepository repository;
 
   @Autowired
-  public DocumentoServiceImpl(DocumentRepository repository) {
+  public DocumentServiceImpl(DocumentRepository repository) {
     this.repository = repository;
   }
 

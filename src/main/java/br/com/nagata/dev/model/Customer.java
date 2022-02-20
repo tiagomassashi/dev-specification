@@ -1,6 +1,5 @@
 package br.com.nagata.dev.model;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.Column;
@@ -27,9 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "TB_CLIE", schema = "PUBLIC")
-public class Customer implements Serializable {
-
-  private static final long serialVersionUID = 1L;
+public class Customer {
 
   @Id
   @SequenceGenerator(name = "customerSequence", sequenceName = "PUBLIC.SQ_CLIE", allocationSize = 1)

@@ -1,6 +1,5 @@
 package br.com.nagata.dev.model.dto;
 
-import java.io.Serializable;
 import br.com.nagata.dev.enums.DocumentTypeEnum;
 import br.com.nagata.dev.model.Document;
 import lombok.AllArgsConstructor;
@@ -12,9 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DocumentDTO implements Serializable {
-
-  private static final long serialVersionUID = 1L;
+public class DocumentDTO {
 
   private DocumentTypeEnum type;
   private String number;

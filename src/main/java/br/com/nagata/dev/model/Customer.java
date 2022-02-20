@@ -2,6 +2,7 @@ package br.com.nagata.dev.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -44,7 +45,8 @@ public class Customer {
   @Column(name = "DH_INCL", nullable = false)
   private LocalDateTime registrationDateTime;
 
-  @OneToMany(mappedBy = "id.customerCode", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "id.customerCode", fetch = FetchType.EAGER, cascade = CascadeType.ALL,
+      orphanRemoval = true)
   private List<Document> customerDocuments;
 
   public Customer(CustomerDTO dto) {

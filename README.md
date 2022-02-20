@@ -104,6 +104,9 @@ password:
 }
 ```
 
+### Swagger
+- URL: http://localhost:8080/dev-specification/swagger-ui/index.html#/
+
 ##
 
 ### Contato

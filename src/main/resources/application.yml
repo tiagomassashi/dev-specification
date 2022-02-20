@@ -36,14 +36,18 @@ server:
 # Configuracao do banco de dados
 spring.jpa:
   show-sql: true
-  generate-ddl: false
+  generate-ddl: true
   database: H2
   hibernate:
-    ddl-auto: create
+    ddl-auto: update
   properties:
     hibernate:
       dialect: org.hibernate.dialect.H2Dialect
-      
+  defer-datasource-initialization: true
+        
+spring.datasource:
+  initialization-mode: always
+
 # Configuracao do Actuator
 management:
   endpoint:

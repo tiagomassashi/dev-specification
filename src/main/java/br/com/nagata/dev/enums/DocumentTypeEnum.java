@@ -4,9 +4,12 @@ import lombok.Getter;
 
 @Getter
 public enum DocumentTypeEnum {
-  RG("01"), CPF("02"), CNPJ("03"), RNE("04");
+  RG("01"),
+  CPF("02"),
+  CNPJ("03"),
+  RNE("04");
 
-  private String code;
+  private final String code;
 
   private DocumentTypeEnum(String code) {
     this.code = code;

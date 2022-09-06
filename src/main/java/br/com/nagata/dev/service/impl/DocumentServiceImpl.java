@@ -1,17 +1,17 @@
 package br.com.nagata.dev.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import br.com.nagata.dev.model.Document;
 import br.com.nagata.dev.repository.DocumentRepository;
 import br.com.nagata.dev.service.DocumentService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 public class DocumentServiceImpl implements DocumentService {
 
-  private DocumentRepository repository;
+  private final DocumentRepository repository;
 
   @Autowired
   public DocumentServiceImpl(DocumentRepository repository) {

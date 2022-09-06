@@ -1,9 +1,10 @@
 package br.com.nagata.dev.converter;
 
-import java.util.stream.Stream;
+import br.com.nagata.dev.enums.DocumentTypeEnum;
+
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
-import br.com.nagata.dev.enums.DocumentTypeEnum;
+import java.util.stream.Stream;
 
 @Converter(autoApply = true)
 public class DocumentTypeConverter implements AttributeConverter<DocumentTypeEnum, String> {
@@ -21,7 +22,9 @@ public class DocumentTypeConverter implements AttributeConverter<DocumentTypeEnu
     if (code == null) {
       return null;
     }
-    return Stream.of(DocumentTypeEnum.values()).filter(c -> c.getCode().equals(code)).findFirst()
+    return Stream.of(DocumentTypeEnum.values())
+        .filter(c -> c.getCode().equals(code))
+        .findFirst()
         .orElseThrow(IllegalArgumentException::new);
   }
 }

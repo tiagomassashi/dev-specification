@@ -1,14 +1,15 @@
 package br.com.nagata.dev.repository.specification;
 
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Predicate;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.util.StringUtils;
 import br.com.nagata.dev.enums.CustomerTypeEnum;
 import br.com.nagata.dev.enums.DocumentTypeEnum;
 import br.com.nagata.dev.model.Customer;
 import br.com.nagata.dev.model.Document;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.StringUtils;
+
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Predicate;
 
 public class CustomerSpecification {
 
@@ -24,15 +25,15 @@ public class CustomerSpecification {
   }
 
   public static Specification<Customer> likeName(String name) {
-    return (root, query, builder) -> StringUtils.hasLength(name)
-        ? builder.like(builder.upper(root.get(CUSTOMER_NAME)), "%" + name.toUpperCase() + "%")
-        : null;
+    return (root, query, builder) ->
+        StringUtils.hasLength(name)
+            ? builder.like(builder.upper(root.get(CUSTOMER_NAME)), "%" + name.toUpperCase() + "%")
+            : null;
   }
 
   public static Specification<Customer> equalCustomerType(CustomerTypeEnum customerType) {
-    return (root, query, builder) -> customerType != null
-        ? builder.equal(root.get(CUSTOMER_TYPE), customerType)
-        : null;
+    return (root, query, builder) ->
+        customerType != null ? builder.equal(root.get(CUSTOMER_TYPE), customerType) : null;
   }
 
   public static Specification<Customer> equalDocument(DocumentTypeEnum type, String number) {

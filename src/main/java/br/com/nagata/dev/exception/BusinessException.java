@@ -1,8 +1,8 @@
 package br.com.nagata.dev.exception;
 
-import org.springframework.http.HttpStatus;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.HttpStatus;
 
 @Getter
 @Setter

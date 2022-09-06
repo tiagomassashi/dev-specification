@@ -1,11 +1,12 @@
 package br.com.nagata.dev.model.pk;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import br.com.nagata.dev.enums.DocumentTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Getter
 @Setter

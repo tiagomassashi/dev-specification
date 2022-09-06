@@ -1,16 +1,17 @@
 package br.com.nagata.dev.model.dto;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import br.com.nagata.dev.enums.CustomerTypeEnum;
 import br.com.nagata.dev.model.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter

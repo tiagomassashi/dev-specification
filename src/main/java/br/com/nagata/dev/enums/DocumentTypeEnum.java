@@ -11,7 +11,7 @@ public enum DocumentTypeEnum {
 
   private final String code;
 
-  private DocumentTypeEnum(String code) {
+  DocumentTypeEnum(String code) {
     this.code = code;
   }
 }

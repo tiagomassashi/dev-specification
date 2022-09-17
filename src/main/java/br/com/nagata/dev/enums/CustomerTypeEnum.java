@@ -5,5 +5,5 @@ import lombok.Getter;
 @Getter
 public enum CustomerTypeEnum {
   NORMAL,
-  ESPECIAL;
+  ESPECIAL
 }

@@ -1,13 +1,13 @@
 package br.com.nagata.dev.converter;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import br.com.nagata.dev.enums.DocumentTypeEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import br.com.nagata.dev.enums.DocumentTypeEnum;
-import br.com.nagata.dev.exception.BusinessException;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(MockitoExtension.class)
 class DocumentTypeConverterTest {
@@ -38,7 +38,7 @@ class DocumentTypeConverterTest {
   }
 
   @Test
-  void testConvertToEntityAttributeException() throws BusinessException {
+  void testConvertToEntityAttributeException() {
     DocumentTypeEnum typeEnum = converter.convertToEntityAttribute(null);
     assertNull(typeEnum, "Expected type null");
   }

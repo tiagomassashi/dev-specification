@@ -1,12 +1,14 @@
 package br.com.nagata.dev.model.dto;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import java.util.ArrayList;
+import br.com.nagata.dev.model.Document;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import br.com.nagata.dev.model.Document;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(MockitoExtension.class)
 class PageDTOTest {
@@ -18,8 +20,8 @@ class PageDTOTest {
     dto.setPageSize(1);
     dto.setTotalPages(1);
     dto.setNumberOfElements(1);
-    dto.setTotalElements(1l);
-    dto.setContent(new ArrayList<Document>());
+    dto.setTotalElements(1L);
+    dto.setContent(new ArrayList<>());
     assertEquals(1, dto.getPageNumber(), "Expected page number equal 1");
     assertEquals(1, dto.getPageSize(), "Expected page size equal 1");
     assertEquals(1, dto.getTotalPages(), "Expected total pages equal 1");
@@ -30,7 +32,7 @@ class PageDTOTest {
 
   @Test
   void testConstructorAllArgs() {
-    PageDTO<Document> dto = new PageDTO<>(1, 1, 1, 1, 1l, new ArrayList<Document>());
+    PageDTO<Document> dto = new PageDTO<>(1, 1, 1, 1, 1L, new ArrayList<>());
     assertNotNull(dto, "Expected page not null");
   }
 }

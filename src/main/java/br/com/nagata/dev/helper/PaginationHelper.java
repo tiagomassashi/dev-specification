@@ -1,10 +1,10 @@
 package br.com.nagata.dev.helper;
 
+import br.com.nagata.dev.model.dto.PageDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-import br.com.nagata.dev.model.dto.PageDTO;
 
 @Component
 public class PaginationHelper {
@@ -27,8 +27,9 @@ public class PaginationHelper {
   }
 
   public Pageable convert(int page, int size) {
-    int pageNumber = page < MIN_PAGE_NUMBER ? (MIN_PAGE_NUMBER - PAGE_OFFSET) : (page - PAGE_OFFSET);
-    int pageSize = size > MAX_PAGE_SIZE ? MAX_PAGE_SIZE : size;
+    int pageNumber =
+        page < MIN_PAGE_NUMBER ? (MIN_PAGE_NUMBER - PAGE_OFFSET) : (page - PAGE_OFFSET);
+    int pageSize = Math.min(size, MAX_PAGE_SIZE);
     pageSize = pageSize < MIN_PAGE_SIZE ? MAX_PAGE_SIZE : pageSize;
 
     return PageRequest.of(pageNumber, pageSize);

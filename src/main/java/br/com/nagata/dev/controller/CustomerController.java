@@ -40,7 +40,8 @@ public class CustomerController {
 
   @GetMapping("/{id}")
   @Operation(summary = "Get customer by Id")
-  public ResponseEntity<?> getCustomerById(@PathVariable Long id) throws BusinessException {
+  public ResponseEntity<?> getCustomerById(@PathVariable Long id)
+      throws BusinessException {
     return ResponseEntity.ok(new CustomerDTO(service.getCustomerById(id)));
   }
 
@@ -53,7 +54,8 @@ public class CustomerController {
 
   @GetMapping
   @Operation(summary = "Get all customers using filters")
-  public ResponseEntity<?> getCustomers(CustomerFilterDTO filter, PaginationDTO pagination) {
+  public ResponseEntity<?> getCustomers(
+      CustomerFilterDTO filter, PaginationDTO pagination) {
     Pageable pageable = paginationHelper.convert(pagination.getPage(), pagination.getSize());
     Page<Customer> customers = service.getCustomers(filter, pageable);
     return ResponseEntity.ok().body(paginationHelper.convert(customers.map(CustomerDTO::new)));

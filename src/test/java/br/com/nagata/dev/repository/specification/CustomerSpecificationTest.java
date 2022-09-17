@@ -17,12 +17,8 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class CustomerSpecificationTest {
 
-  private static final String ID = "id";
   private static final String CUSTOMER_NAME = "customerName";
   private static final String CUSTOMER_TYPE = "customerType";
-  private static final String CUSTOMER_DOCUMENTS = "customerDocuments";
-  private static final String DOCUMENT_TYPE = "documentType";
-  private static final String DOCUMENT_NUMBER = "documentNumber";
 
   @Mock private CriteriaBuilder builder;
   @Mock private CriteriaQuery<Customer> query;
